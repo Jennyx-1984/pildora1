@@ -32,7 +32,7 @@ errorName.classList.remove("valido","visible");
 errorEmail.classList.remove("valido","visible");
 errorPass.classList.remove("valido","visible");
 window.location.href = `resultado.html?name=${encodeURIComponent(fieldName)}&email=${encodeURIComponent(fieldEmail)}&password=${encodeURIComponent(fieldPass)}`;
-//form.reset();
+form.reset();
 
 
 })
