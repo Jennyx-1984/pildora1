@@ -2,7 +2,8 @@ const form=document.querySelector("form");
 const patternName=/^[A-Za-zÁÉÍÓÚáéíóúÑñÜüçÇ'\s\-]+$/; // --> nombres sin numeros,acentos,',guiones
 const patternEmail=/^[^\s@.#]+@gmail\.(com|es)$/ // --> correos solo de gmail
 //contraseña de +8 caracteres, minimo 1 mayuscula, min 1 digito, 1 caracter especial. No permite espacios
-const patternPass=/^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).[\S]{8,}$/
+const patternPass=/^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).[\S]{8,}$/;
+const emptyField="El campo está vacío";
 
 
 form.addEventListener("submit",(e)=>{
@@ -12,48 +13,62 @@ const nameOK=nameValidation();
 const emailOK=emailValidation();
 const passOK=passwordValidation();
 
+if(!nameOK || !emailOK || !passOK) return alert("Te faltan datos por rellenar");
 
-if (!nameOK || !emailOK || !passOK) return;
 const fieldName=document.getElementById("name").value.trim();
 const fieldEmail=document.getElementById("email").value.trim();
 const fieldPass=document.getElementById("password").value.trim();
+const errorName=document.getElementById("nameError");
+const errorEmail=document.getElementById("emailError");
+const errorPass=document.getElementById("passError");
 
 alert(`¡Datos del formulario!\n\n` +
         `Nombre: ${fieldName}\n` +
         `Email: ${fieldEmail}\n` +
         `Contraseña: ${fieldPass}`);
+errorName.classList.remove("valido","visible");
+errorEmail.classList.remove("valido","visible");
+errorPass.classList.remove("valido","visible");
+
 form.reset();
 
+
 })
+
+
 function nameValidation(){
-const fieldName=document.getElementById("name").value.trim();    
-const errorName=document.getElementById("nameError");
+    const fieldName=document.getElementById("name").value.trim();
+    const errorName=document.getElementById("nameError");
 
-if(fieldName===""){
-    errorName.classList.remove("valido", "visible");
-    errorName.textContent="El campo está vacío";
-    errorName.classList.add("visible");
-    return false;
+    if(fieldName===""){
+        errorName.classList.remove("valido","visible");
+        errorName.textContent=emptyField;
+        errorName.classList.add("visible");
+        return false;
+    }
+
+    if(!patternName.test(fieldName)){
+        errorName.classList.remove("valido","visible");
+        errorName.textContent="Has introducido un carácter inválido";
+        errorName.classList.add("visible");
+        return false;
+    }
+
+    if((patternName.test(fieldName)) && (fieldName.length<2)){
+        errorName.classList.remove("valido","visible");
+        errorName.textContent="El nombre tiene que tener más de 1 letra";
+        errorName.classList.add("visible");
+        return false;
+    }
+
+
+        errorName.textContent="El nombre es válido";
+        errorName.classList.add("valido");
+        return true;
 }
 
-if(!patternName.test(fieldName)){
-    errorName.classList.remove("valido", "visible");
-    errorName.textContent="Has introducido un carácter incorrecto";
-    errorName.classList.add("visible");
-    return false;
-}
+document.getElementById("name").addEventListener("blur",nameValidation);
 
-if((patternName.test(fieldName)) && (fieldName.length<3)){
-    errorName.classList.remove("valido", "visible");
-    errorName.textContent="El nombre tiene que tener más de 3 carácteres";
-    errorName.classList.add("visible");
-    return true;
-}
-
-errorName.textContent="El nombre es válido";
-errorName.classList.add("valido");
-return true;
-}
 
 
 function emailValidation(){
@@ -61,23 +76,24 @@ function emailValidation(){
     const errorEmail=document.getElementById("emailError");
 
     if(fieldEmail===""){
-        errorEmail.classList.remove("valido", "visible");
-        errorEmail.textContent="El campo está vacío";
+        errorEmail.classList.remove("valido","visible");
+        errorEmail.textContent=emptyField;
         errorEmail.classList.add("visible");
         return false;
     }
 
     if(!patternEmail.test(fieldEmail)){
-        errorEmail.classList.remove("valido", "visible");
-        errorEmail.textContent="El email es incorrecto, solo aceptamos correos de gmail";
+        errorEmail.classList.remove("valido","visible");
+        errorEmail.textContent="El formato del email está mal, solo acepta correos de gmail con extension .com o .es";
         errorEmail.classList.add("visible");
         return false;
     }
-
     errorEmail.textContent="Correo válido";
     errorEmail.classList.add("valido");
     return true;
+
 }
+document.getElementById("email").addEventListener("blur",emailValidation);
 
 
 function passwordValidation(){
@@ -85,15 +101,15 @@ function passwordValidation(){
     const errorPass=document.getElementById("passError");
 
     if(fieldPass===""){
-        errorPass.classList.remove("valido", "visible");
-        errorPass.textContent="El campo está vacío";
+        errorPass.classList.remove("valido","visible");
+        errorPass.textContent=emptyField;
         errorPass.classList.add("visible");
         return false;
     }
 
     if(!patternPass.test(fieldPass)){
-        errorPass.classList.remove("valido", "visible");
-        errorPass.textContent="La contraseña debe tener al menos 8 letrás, minimo una mayúscula, un carácter especial y números";
+        errorPass.classList.remove("valido","visible");
+        errorPass.textContent="La contraseña tiene que ser de minimo 8 caracteres, 1 mayuscula, 1 numero, 1 caracter especial";
         errorPass.classList.add("visible");
         return false;
     }
@@ -101,12 +117,5 @@ function passwordValidation(){
     errorPass.textContent="Contraseña válida";
     errorPass.classList.add("valido");
     return true;
-
 }
-
-document.getElementById("name").addEventListener("blur", nameValidation);
-
-document.getElementById("email").addEventListener("blur", emailValidation);
-
 document.getElementById("password").addEventListener("blur",passwordValidation);
-
