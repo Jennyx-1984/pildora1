@@ -31,7 +31,7 @@ alert(`¡Datos del formulario!\n\n` +
 errorName.classList.remove("valido","visible");
 errorEmail.classList.remove("valido","visible");
 errorPass.classList.remove("valido","visible");
-window.location.href = `resultado.html?name=${encodeURIComponent(fieldName)}&email=${encodeURIComponent(fieldEmail)}&password=${encodeURIComponent(fieldPass)}`;
+//window.location.href = `resultado.html?name=${encodeURIComponent(fieldName)}&email=${encodeURIComponent(fieldEmail)}&password=${encodeURIComponent(fieldPass)}`;
 form.reset();
 
 
@@ -148,4 +148,5 @@ function passwordValidation(){
     errorPass.classList.add("valido");
     return true;
 }
+
 document.getElementById("password").addEventListener("blur",passwordValidation);
