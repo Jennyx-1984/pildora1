@@ -38,34 +38,6 @@ form.reset();
 })
 
 
-/*enviar.addEventListener("submit",(e)=>{
-e.preventDefault();
-
-const nameOK=nameValidation();
-const emailOK=emailValidation();
-const passOK=passwordValidation();
-
-if(!nameOK || !emailOK || !passOK) return alert("Te faltan datos por rellenar");
-
-const fieldName=document.getElementById("name").value.trim();
-const fieldEmail=document.getElementById("email").value.trim();
-const fieldPass=document.getElementById("password").value.trim();
-const errorName=document.getElementById("nameError");
-const errorEmail=document.getElementById("emailError");
-const errorPass=document.getElementById("passError");
-
-alert(`¡Datos del formulario!\n\n` +
-        `Nombre: ${fieldName}\n` +
-        `Email: ${fieldEmail}\n` +
-        `Contraseña: ${fieldPass}`);
-errorName.classList.remove("valido","visible");
-errorEmail.classList.remove("valido","visible");
-errorPass.classList.remove("valido","visible");
-
-form.reset();
-
-})*/
-
 function nameValidation(){
     const fieldName=document.getElementById("name").value.trim();
     const errorName=document.getElementById("nameError");
@@ -150,3 +122,4 @@ function passwordValidation(){
 }
 
 document.getElementById("password").addEventListener("blur",passwordValidation);
+
