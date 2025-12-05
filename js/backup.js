@@ -120,3 +120,4 @@ const errorPass=document.getElementById("passError");
 passwordValidation(fieldPass,errorPass);
 });
 
+
