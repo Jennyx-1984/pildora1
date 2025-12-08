@@ -8,6 +8,6 @@ resultado.innerHTML = `
   <p><strong>Nombre:</strong> ${nombre}</p>
   <p><strong>Email:</strong> ${email}</p>
   <p><strong>Contraseña:</strong> ${pass}</p>
-  <button id="enviar" onclick="location.href='index.html'">Volver</button>
+  <button id="enviar" onclick="location.href='../index.html'">Volver</button>
 `;
 

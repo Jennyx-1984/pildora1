@@ -24,7 +24,7 @@ const errorName=document.getElementById("nameError");
 const errorEmail=document.getElementById("emailError");
 const errorPass=document.getElementById("passError");
 
-alert(`¡Datos del formulario!\n\n` +
+alert(
         `Nombre: ${fieldName}\n` +
         `Email: ${fieldEmail}\n` +
         `Contraseña: ${fieldPass}`);

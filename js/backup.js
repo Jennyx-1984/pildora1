@@ -1,6 +1,6 @@
 const form=document.querySelector("form");
 const patternName=/^[A-Za-zÁÉÍÓÚáéíóúÑñÜüçÇ'\s\-]+$/; // --> nombres sin numeros,acentos,',guiones
-const patternEmail=/^[^\s@.#]+@gmail\.(com|es)$/ // --> correos solo de gmail
+const patternEmail=/^[^\s@.#]+\@gmail\.(com|es)$/ // --> correos solo de gmail
 //contraseña de +8 caracteres, minimo 1 mayuscula, min 1 digito, 1 caracter especial. No permite espacios
 //const patternPass=/^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).[\S]{8,}$/;
 const patternPass=/^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>\/?]).[\S]{8,}$/;
@@ -29,8 +29,10 @@ alert(  `Nombre: ${fieldName}\n` +
 errorName.classList.remove("valido","visible");
 errorEmail.classList.remove("valido","visible");
 errorPass.classList.remove("valido","visible");
-//window.location.href = `resultado.html?name=${encodeURIComponent(fieldName)}&email=${encodeURIComponent(fieldEmail)}&password=${encodeURIComponent(fieldPass)}`;
+window.location.href = `pages/resultado.html?name=${encodeURIComponent(fieldName)}&email=${encodeURIComponent(fieldEmail)}&password=${encodeURIComponent(fieldPass)}`;
 form.reset();
+
+
 })
 
 
@@ -119,5 +121,3 @@ const fieldPass=e.target.value.trim();
 const errorPass=document.getElementById("passError");
 passwordValidation(fieldPass,errorPass);
 });
-
-
